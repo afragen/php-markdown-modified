@@ -1,0 +1,1 @@
+Modified version of original PHP Markdown plugin to work along side Markdown on Save variants.
