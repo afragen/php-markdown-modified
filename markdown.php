@@ -62,7 +62,7 @@ function AJF_Markdown($text) {
 Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting.
-Version: 0.5 - PHP Markdown 1.0.1o
+Version: 0.6 - PHP Markdown 1.0.1o
 Author: Andy Fragen
 */
 if ( is_admin() ) {
@@ -81,7 +81,8 @@ if ( is_admin() ) {
 		'tested' => $wp_version
 
 	);
-	$github_updater = new wp_github_updater( $config );
+	//$github_updater = new wp_github_updater( $config );
+	new WPGitHubUpdater($config);
 }
 
 if (isset($wp_version)) {

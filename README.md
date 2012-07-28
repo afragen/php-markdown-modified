@@ -9,4 +9,4 @@ Current Version
 
 Using https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
 
-~Current Version:0.5~
+~Current Version:0.6~
