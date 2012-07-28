@@ -59,7 +59,7 @@ function AJF_Markdown($text) {
 ### WordPress Plugin Interface ###
 
 /*
-Plugin Name: Markdown - AJF Modified
+Plugin Name: Markdown - Modified
 Plugin URI: http://michelf.com/projects/php-markdown/
 Description: Modified to work along side Markdown on Save variants. <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>
 Version: 1.0.1n
