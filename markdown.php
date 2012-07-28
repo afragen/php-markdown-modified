@@ -60,10 +60,10 @@ function AJF_Markdown($text) {
 
 /*
 Plugin Name: Markdown - Modified
-Plugin URI: http://michelf.com/projects/php-markdown/
+Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>
-Version: 1.0.1n
-Author: Michel Fortin
+Version: 1.0.1n-modified-v1
+Author: Michel Fortin, Andy Fragen
 Author URI: http://michelf.com/
 */
 
@@ -138,25 +138,25 @@ if (isset($wp_version)) {
 
 ### bBlog Plugin Info ###
 
-// function identify_modifier_markdown() {
-// 	return array(
-// 		'name'			=> 'markdown',
-// 		'type'			=> 'modifier',
-// 		'nicename'		=> 'Markdown',
-// 		'description'	=> 'A text-to-HTML conversion tool for web writers',
-// 		'authors'		=> 'Michel Fortin and John Gruber',
-// 		'licence'		=> 'BSD-like',
-// 		'version'		=> MARKDOWN_VERSION,
-// 		'help'			=> '<a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>'
-// 	);
-// }
+function identify_modifier_markdown() {
+	return array(
+		'name'			=> 'markdown',
+		'type'			=> 'modifier',
+		'nicename'		=> 'Markdown',
+		'description'	=> 'A text-to-HTML conversion tool for web writers',
+		'authors'		=> 'Michel Fortin and John Gruber',
+		'licence'		=> 'BSD-like',
+		'version'		=> MARKDOWN_VERSION,
+		'help'			=> '<a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>'
+	);
+}
 
 
 ### Smarty Modifier Interface ###
 
-// function smarty_modifier_markdown($text) {
-// 	return Markdown($text);
-// }
+function smarty_modifier_markdown($text) {
+	return AJF_Markdown($text);
+}
 
 
 ### Textile Compatibility Mode ###
@@ -169,7 +169,7 @@ if (strcasecmp(substr(__FILE__, -16), "classTextile.php") == 0) {
 	# Fake Textile class. It calls Markdown instead.
 	class Textile {
 		function TextileThis($text, $lite='', $encode='') {
-			if ($lite == '' && $encode == '')    $text = Markdown($text);
+			if ($lite == '' && $encode == '')    $text = AJF_Markdown($text);
 			if (function_exists('SmartyPants'))  $text = SmartyPants($text);
 			return $text;
 		}
