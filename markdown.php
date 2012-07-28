@@ -61,10 +61,9 @@ function AJF_Markdown($text) {
 /*
 Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
-Description: Modified to work along side Markdown on Save variants. <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>
-Version: 1.0.1n-modified-v1
-Author: Michel Fortin, Andy Fragen
-Author URI: http://michelf.com/
+Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting.
+Version: 0.1
+Author: Andy Fragen
 */
 
 if (isset($wp_version)) {
@@ -138,7 +137,7 @@ if (isset($wp_version)) {
 
 ### bBlog Plugin Info ###
 
-function identify_modifier_markdown() {
+function AJF_identify_modifier_markdown() {
 	return array(
 		'name'			=> 'markdown',
 		'type'			=> 'modifier',
@@ -154,7 +153,7 @@ function identify_modifier_markdown() {
 
 ### Smarty Modifier Interface ###
 
-function smarty_modifier_markdown($text) {
+function AJF_smarty_modifier_markdown($text) {
 	return AJF_Markdown($text);
 }
 
