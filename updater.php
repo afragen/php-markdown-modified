@@ -53,7 +53,8 @@ class WPGitHubUpdater {
 			'zip_url' => 'https://github.com/afragen/php-markdown-modified/zipball/master',
 			'sslverify' => true,
 			'requires' => $wp_version,
-			'tested' => $wp_version
+			'tested' => $wp_version,
+			'readme' => 'README.md'
 		);
 
 		$this->config = wp_parse_args( $config, $defaults );
