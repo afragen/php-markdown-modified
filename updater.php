@@ -47,14 +47,14 @@ class WPGitHubUpdater {
 		$defaults = array(
 			'slug' => plugin_basename(__FILE__),
 			'proper_folder_name' => dirname( plugin_basename(__FILE__) ),
-			'api_url' => 'https://api.github.com/repos/afragen/php-markdown-modified',
-			'raw_url' => 'https://raw.github.com/afragen/php-markdown-modified/master',
-			'github_url' => 'https://github.com/afragen/php-markdown-modified',
-			'zip_url' => 'https://github.com/afragen/php-markdown-modified/zipball/master',
+			'api_url' => 'https://api.github.com/repos/afragen/'.GIT_REPO,
+			'raw_url' => 'https://raw.github.com/afragen/'.GIT_REPO.'/master',
+			'github_url' => 'https://github.com/afragen/'.GIT_REPO,
+			'zip_url' => 'https://github.com/afragen/'.GIT_REPO.'/zipball/master',
 			'sslverify' => true,
 			'requires' => $wp_version,
 			'tested' => $wp_version,
-			'readme' => 'README.md'
+			'readme' => 'readme.txt'
 		);
 
 		$this->config = wp_parse_args( $config, $defaults );
