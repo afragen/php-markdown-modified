@@ -62,26 +62,27 @@ function AJF_Markdown($text) {
 Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting. Using PHP Markdown 1.0.1o
-Version: 0.9.3
+Version: 0.9.4
 Author: Andy Fragen
 */
 if ( is_admin() ) {
+	$repo = 'afragen/php-markdown-modified';
 	global $wp_version;
-	include_once( 'updater.php' );
-	$config = array(		
-		'slug' => plugin_basename(__FILE__),
-		'proper_folder_name' => dirname( plugin_basename(__FILE__) ),
-		'api_url' => 'https://api.github.com/repos/afragen/php-markdown-modified',
-		'raw_url' => 'https://raw.github.com/afragen/php-markdown-modified/master',
-		'github_url' => 'https://github.com/afragen/php-markdown-modified',
-		'zip_url' => 'https://github.com/afragen/php-markdown-modified/zipball/master',
-		'sslverify' => true,
-		'requires' => $wp_version,
-		'tested' => $wp_version,
-		'readme' => 'readme.txt'
-
-	);
-	new WPGitHubUpdater($config);
+	include_once( GTU_INCLUDES.'/updater.php' );
+		$config = array(
+			'slug' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => 'php-markdown-modified',
+			'api_url' => 'https://api.github.com/repos/'.$repo,
+			'raw_url' => 'https://raw.github.com/'.$repo.'/master',
+			'github_url' => 'https://github.com/'.$repo,
+			'zip_url' => 'https://github.com/'.$repo.'/zipball/master',
+			'sslverify' => true,
+			'requires' => '3.0',
+			'tested' => '3.3',
+			'readme' => 'README.md',
+			'access_token' => '',
+		);
+	new WP_GitHub_Updater($config);
 }
 
 if (isset($wp_version)) {
