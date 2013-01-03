@@ -65,13 +65,15 @@ Description: Modified to work along side Markdown on Save variants. All posts co
 Version: 0.9.4
 Author: Andy Fragen
 */
+
+require_once('updater.php');
 if ( is_admin() ) {
 	$repo = 'afragen/php-markdown-modified';
 	global $wp_version;
 	include_once( GTU_INCLUDES.'/updater.php' );
 		$config = array(
 			'slug' => plugin_basename( __FILE__ ),
-			'proper_folder_name' => 'php-markdown-modified',
+			'proper_folder_name' => basename($repo),
 			'api_url' => 'https://api.github.com/repos/'.$repo,
 			'raw_url' => 'https://raw.github.com/'.$repo.'/master',
 			'github_url' => 'https://github.com/'.$repo,
