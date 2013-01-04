@@ -62,15 +62,15 @@ function AJF_Markdown($text) {
 Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting. Using PHP Markdown 1.0.1o
-Version: 0.9.6
+Version: 0.9.7
 Author: Andy Fragen
 */
 
-require_once('updater.php');
+//Load GithubUpdater
 if ( is_admin() ) {
 	$repo = 'afragen/php-markdown-modified';
 	global $wp_version;
-	include_once( GTU_INCLUDES.'/updater.php' );
+	include_once( dirname(__FILE__).'/updater/updater.php' );
 		$config = array(
 			'slug' => plugin_basename( __FILE__ ),
 			'proper_folder_name' => basename($repo),
@@ -81,11 +81,12 @@ if ( is_admin() ) {
 			'sslverify' => true,
 			'requires' => '3.0',
 			'tested' => '3.3',
-			'readme' => 'README.md',
+			'readme' => 'readme.txt',
 			'access_token' => '',
 		);
 	new WP_GitHub_Updater($config);
 }
+
 
 if (isset($wp_version)) {
 	# More details about how it works here:
