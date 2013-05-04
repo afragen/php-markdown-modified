@@ -77,7 +77,7 @@ function pmm_github_plugin_updater() {
 	github_plugin_updater_register( array(
 		'owner'	=> 'afragen',
 		'repo'	=> 'php-markdown-modified',
-		'slug'	=> 'php-markdown-modified/markdown.php', // defaults to the repo value ('repo/repo.php')
+		'slug'	=> 'php-markdown-modified/php-markdown-modified.php', // defaults to the repo value ('repo/repo.php')
 	) );
 }
 
