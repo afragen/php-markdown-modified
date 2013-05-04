@@ -62,29 +62,23 @@ function AJF_Markdown($text) {
 Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting. Using PHP Markdown 1.0.1o
-Version: 0.9.7
+Version: 0.9.8
 Author: Andy Fragen
 */
 
-//Load GithubUpdater
-if ( is_admin() ) {
-	$repo = 'afragen/php-markdown-modified';
-	global $wp_version;
-	include_once( dirname(__FILE__).'/updater/updater.php' );
-		$config = array(
-			'slug' => plugin_basename( __FILE__ ),
-			'proper_folder_name' => basename($repo),
-			'api_url' => 'https://api.github.com/repos/'.$repo,
-			'raw_url' => 'https://raw.github.com/'.$repo.'/master',
-			'github_url' => 'https://github.com/'.$repo,
-			'zip_url' => 'https://github.com/'.$repo.'/zipball/master',
-			'sslverify' => true,
-			'requires' => '3.0',
-			'tested' => '3.3',
-			'readme' => 'readme.txt',
-			'access_token' => '',
-		);
-	new WP_GitHub_Updater($config);
+if ( is_admin() )
+	add_action( 'plugins_loaded', 'pmm_github_plugin_updater' );
+	
+function pmm_github_plugin_updater() {
+
+	if ( ! function_exists( 'github_plugin_updater_register' ) )
+		return false;
+
+	github_plugin_updater_register( array(
+		'owner'	=> 'afragen',
+		'repo'	=> 'php-markdown-modified',
+		'slug'	=> 'php-markdown-modified/php-markdown-modified.php', // defaults to the repo value ('repo/repo.php')
+	) );
 }
 
 
