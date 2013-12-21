@@ -12,7 +12,7 @@
 #
 
 
-define( 'MARKDOWN_VERSION',  "1.0.1o" ); # Sun 8 Jan 2012
+define( 'AJF_MARKDOWN_VERSION',  "1.0.1o" ); # Sun 8 Jan 2012
 
 
 #
@@ -63,7 +63,7 @@ Plugin Name: Markdown - Modified
 Plugin URI: https://github.com/afragen/php-markdown-modified
 GitHub Plugin URI: https://github.com/afragen/php-markdown-modified
 Description: Modified to work along side Markdown on Save variants. All posts containing Markdown are rendered regardless of Markdown on Save variant setting. Using PHP Markdown 1.0.1o
-Version: 1.0
+Version: 1.0.1
 Author: Andy Fragen
 */
 
@@ -84,8 +84,8 @@ if (isset($wp_version)) {
         add_filter('the_content_rss', 'AJF_Markdown', 6);
 		add_filter('get_the_excerpt', 'AJF_Markdown', 6);
 		add_filter('get_the_excerpt', 'trim', 7);
-		add_filter('the_excerpt',     'mdwp_add_p');
-		add_filter('the_excerpt_rss', 'mdwp_strip_p');
+		add_filter('the_excerpt',     'ajf_mdwp_add_p');
+		add_filter('the_excerpt_rss', 'ajf_mdwp_strip_p');
 		
 		remove_filter('content_save_pre',  'balanceTags', 50);
 		remove_filter('excerpt_save_pre',  'balanceTags', 50);
@@ -102,11 +102,11 @@ if (isset($wp_version)) {
 		remove_filter('comment_text', 'wpautop', 30);
 		remove_filter('comment_text', 'make_clickable');
 		add_filter('pre_comment_content', 'AJF_Markdown', 6);
-		add_filter('pre_comment_content', 'mdwp_hide_tags', 8);
-		add_filter('pre_comment_content', 'mdwp_show_tags', 12);
+		add_filter('pre_comment_content', 'ajf_mdwp_hide_tags', 8);
+		add_filter('pre_comment_content', 'ajf_mdwp_show_tags', 12);
 		add_filter('get_comment_text',    'AJF_Markdown', 6);
 		add_filter('get_comment_excerpt', 'AJF_Markdown', 6);
-		add_filter('get_comment_excerpt', 'mdwp_strip_p', 7);
+		add_filter('get_comment_excerpt', 'ajf_mdwp_strip_p', 7);
 	
 		global $mdwp_hidden_tags, $mdwp_placeholders;
 		$mdwp_hidden_tags = explode(' ',
@@ -116,7 +116,7 @@ if (isset($wp_version)) {
 			'ML5IjmbRol ulANi1NsGY J7zRLJqPul liA8ctl16T K9nhooUHli'));
 	}
 	
-	function mdwp_add_p($text) {
+	function ajf_mdwp_add_p($text) {
 		if (!preg_match('{^$|^<(p|ul|ol|dl|pre|blockquote)>}i', $text)) {
 			$text = '<p>'.$text.'</p>';
 			$text = preg_replace('{\n{2,}}', "</p>\n\n<p>", $text);
@@ -124,13 +124,13 @@ if (isset($wp_version)) {
 		return $text;
 	}
 	
-	function mdwp_strip_p($t) { return preg_replace('{</?p>}i', '', $t); }
+	function ajf_mdwp_strip_p($t) { return preg_replace('{</?p>}i', '', $t); }
 
-	function mdwp_hide_tags($text) {
+	function ajf_mdwp_hide_tags($text) {
 		global $mdwp_hidden_tags, $mdwp_placeholders;
 		return str_replace($mdwp_hidden_tags, $mdwp_placeholders, $text);
 	}
-	function mdwp_show_tags($text) {
+	function ajf_mdwp_show_tags($text) {
 		global $mdwp_hidden_tags, $mdwp_placeholders;
 		return str_replace($mdwp_placeholders, $mdwp_hidden_tags, $text);
 	}
@@ -147,7 +147,7 @@ function AJF_identify_modifier_markdown() {
 		'description'	=> 'A text-to-HTML conversion tool for web writers',
 		'authors'		=> 'Michel Fortin and John Gruber',
 		'licence'		=> 'BSD-like',
-		'version'		=> MARKDOWN_VERSION,
+		'version'		=> AJF_MARKDOWN_VERSION,
 		'help'			=> '<a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>'
 	);
 }
